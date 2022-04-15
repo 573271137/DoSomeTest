@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+1)实现 move(GameObjct gameObject, Vector3 begin, Vector3 end, float time, bool pingpong){ } 
+使 gameObject 在 time 秒内，从 begin 移动到 end，若 pingpong 为 true，则在结束时 使 gameObject 在 time 秒内从 end 移动到 begin，如此往复。
+2)在上题基础上实现 easeIn easeOut easeInOut 动画效果
+*/
 public class ObjMoveTest : MonoBehaviour
 {
     public enum EaseType
