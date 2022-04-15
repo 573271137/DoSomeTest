@@ -11,7 +11,7 @@ public class ObjMoveTest : MonoBehaviour
 {
     public enum EaseType
     {
-        Liner = 0,
+        Linear = 0,
         EaseIn,
         EaseOut,
         EaseInOut,
@@ -20,8 +20,9 @@ public class ObjMoveTest : MonoBehaviour
     public GameObject Obj;
     public Transform StartTrans;
     public Transform EndTrans;
+    public bool IsPingpong;
 
-    public EaseType CurEase = EaseType.Liner;
+    public EaseType CurEase = EaseType.Linear;
 
     private bool _isStart = false;
     private bool _isPingpong = false;
@@ -35,15 +36,14 @@ public class ObjMoveTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.transform.position = StartTrans.position;
-        Move(Obj, StartTrans.position, EndTrans.position, 5f, true, EaseType.Liner);
+        Move(Obj, StartTrans.position, EndTrans.position, 5f, IsPingpong, CurEase);
         //Move(Obj, StartTrans.position, EndTrans.position, 5f, true, EaseType.EaseIn);
         //Move(Obj, StartTrans.position, EndTrans.position, 5f, true, EaseType.EaseOut);
         //Move(Obj, StartTrans.position, EndTrans.position, 5f, true, EaseType.EaseInOut);
 
     }
 
-    private void Move(GameObject gameObject, Vector3 begin, Vector3 end, float time, bool pingpong,EaseType easeType)
+    private void Move(GameObject gameObject, Vector3 begin, Vector3 end, float time, bool pingpong, EaseType easeType)
     {
         _beginPoint = begin;
         _endPoint = end;
@@ -64,7 +64,7 @@ public class ObjMoveTest : MonoBehaviour
 
         Obj.transform.position = Vector3.Lerp(_beginPoint, _endPoint, _realMotionProgress);
 
-        if(_realMotionProgress == 1)
+        if (_realMotionProgress == 1)
         {
             if (!_isPingpong)
                 _isStart = false;
@@ -78,11 +78,11 @@ public class ObjMoveTest : MonoBehaviour
         }
     }
 
-    private float GetMotionProgressWithEaseType(float progress,EaseType easeType)
+    private float GetMotionProgressWithEaseType(float progress, EaseType easeType)
     {
         switch (easeType)
         {
-            case EaseType.Liner:
+            case EaseType.Linear:
                 return Mathf.Lerp(0, 1, progress);//插值运算
             case EaseType.EaseIn:
                 return progress * progress * progress;//使用函数x^3在[0-1]区间的值
