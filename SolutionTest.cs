@@ -14,6 +14,9 @@ using UnityEngine;
 //                13
 //输出 [2,11,10,12,13]
 
+//大致思路：通过BFS去遍历每一层，用Queue去存储每一层的节点，
+//当每一层遍历结束时，Queue的Peek元素为最左元素，
+//保存进List中继续进行下一层的遍历 算法时间复杂度O(n) 空间复杂度O(n)
 public class Solution : MonoBehaviour
 {
 
